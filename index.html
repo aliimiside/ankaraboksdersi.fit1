@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                        RESİM EKLEME KILAVUZU                                  ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  Bu web sitesine resim eklemek için aşağıdaki adımları takip edin:           ║
+║                                                                              ║
+║  1. RESİM DOSYALARINI HAZIRLAMA:                                             ║
+║     - Resimlerinizi bu index.html dosyası ile AYNI KLASÖRE koyun             ║
+║     - Dosya adlarında Türkçe karakter ve boşluk kullanmayın                  ║
+║     - Önerilen format: .jpg, .png veya .webp                                 ║
+║                                                                              ║
+║  2. ANTRENÖR FOTOĞRAFI (RESİM 1):                                            ║
+║     - Önerilen boyut: 400x530 piksel (3:4 oranı)                             ║
+║     - Dosya adı örneği: antrenor.jpg                                         ║
+║     - Aşağıda "RESİM 1: ANTRENÖR FOTOĞRAFI" yorumunu arayın                  ║
+║     - src="antrenor.jpg" kısmını kendi dosya adınızla değiştirin             ║
+║                                                                              ║
+║  3. KİTAP KAPAĞI (RESİM 2):                                                  ║
+║     - Önerilen boyut: 300x420 piksel (kitap oranı)                           ║
+║     - Dosya adı örneği: kitap-kapak.jpg                                      ║
+║     - Aşağıda "RESİM 2: KİTAP KAPAĞI" yorumunu arayın                        ║
+║     - src="kitap-kapak.jpg" kısmını kendi dosya adınızla değiştirin          ║
+║                                                                              ║
+║  4. HERO GÖRSELİ (RESİM 3 - İSTEĞE BAĞLI):                                   ║
+║     - Ana sayfada dönen halkaların ortasına resim ekleyebilirsiniz           ║
+║     - "RESİM 3: HERO BÖLÜMÜ GÖRSEL" yorumunu arayın                          ║
+║     - Yorum satırını kaldırarak aktif edin                                   ║
+║                                                                              ║
+║  NOT: Ctrl+F ile "RESİM 1", "RESİM 2", "RESİM 3" arayarak                    ║
+║       hızlıca ilgili yerlere ulaşabilirsiniz.                                ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H. Serkan Emek | Ankara Özel Boks Dersleri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --secondary: #f97316;
+            --accent: #fbbf24;
+            --dark: #0a0a0a;
+            --dark-light: #171717;
+            --dark-lighter: #262626;
+            --gray: #a3a3a3;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            padding: 10px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+
+        .floating-glove {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-glove:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-glove:nth-child(2) { top: 60%; right: 10%; animation-delay: 2s; }
+        .floating-glove:nth-child(3) { bottom: 20%; left: 30%; animation-delay: 4s; }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--dark-lighter);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .hero-ring {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .hero-ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .hero-ring:nth-child(2) {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-color: rgba(249, 115, 22, 0.3);
+            animation-delay: 1s;
+        }
+
+        .hero-ring:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-color: rgba(251, 191, 36, 0.3);
+            animation-delay: 2s;
+        }
+
+        .hero-glove-icon {
+            font-size: 8rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 50px rgba(220, 38, 38, 0.5));
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .training-components {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .training-item {
+            background: var(--dark-lighter);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .training-item:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(249, 115, 22, 0.1));
+        }
+
+        .training-item span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .about-cards {
+            display: grid;
+            gap: 20px;
+        }
+
+        .about-card {
+            background: var(--dark-lighter);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+        }
+
+        .about-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .about-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Why Section */
+        .why {
+            background: var(--dark-light);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .why-card {
+            background: var(--dark);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 50px rgba(249, 115, 22, 0.2);
+        }
+
+        .why-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .why-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .why-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Defense Section */
+        .defense {
+            background: linear-gradient(180deg, var(--dark-light) 0%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defense::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+        }
+
+        .defense-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defense-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .defense-text p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .defense-skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            background: rgba(220, 38, 38, 0.1);
+            border-color: var(--primary);
+        }
+
+        .skill-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h4 {
+            font-size: 1rem;
+        }
+
+        .defense-quote {
+            background: linear-gradient(135deg, var(--dark-lighter), var(--dark));
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+
+        .defense-quote .quote-icon {
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.2;
+        }
+
+        .defense-quote p {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--gray);
+        }
+
+        /* Trainer Section */
+        .trainer {
+            background: var(--dark);
+        }
+
+        .trainer-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .trainer-image {
+            position: relative;
+        }
+
+        .trainer-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--dark-lighter), var(--dark-light));
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .trainer-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), transparent);
+        }
+
+        .trainer-photo-icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trainer-photo-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trainer-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .trainer-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .trainer-info .title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .trainer-info p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .trainer-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: var(--dark-lighter);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(249, 115, 22, 0.1));
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .trainer-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .feature-item span:first-child {
+            color: var(--accent);
+        }
+
+        /* Book Section */
+        .book {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+        }
+
+        .book-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-visual {
+            perspective: 1000px;
+        }
+
+        .book-3d {
+            position: relative;
+            width: 300px;
+            height: 420px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .book-3d:hover {
+            transform: rotateY(-20deg) rotateX(5deg);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            border-radius: 5px 15px 15px 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            box-shadow: 
+                20px 20px 60px rgba(0, 0, 0, 0.5),
+                -5px 0 15px rgba(0, 0, 0, 0.3),
+                inset -2px 0 5px rgba(255, 255, 255, 0.1);
+            position: relative;
+            border-left: 8px solid #2a2a4a;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3), transparent, rgba(249, 115, 22, 0.2));
+            border-radius: 5px 15px 15px 5px;
+        }
+
+        .book-cover-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .book-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .book-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .book-subtitle {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .book-author {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .book-pages {
+            position: absolute;
+            top: 10px;
+            left: -5px;
+            bottom: 10px;
+            width: 30px;
+            background: linear-gradient(90deg, 
+                #f5f5f5 0%, 
+                #e0e0e0 10%, 
+                #f5f5f5 20%,
+                #e0e0e0 30%,
+                #f5f5f5 40%);
+            border-radius: 2px 0 0 2px;
+            transform: translateZ(-15px);
+        }
+
+        .book-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .book-info > p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .book-chapters {
+            margin-bottom: 30px;
+        }
+
+        .book-chapters h4 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .chapter-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: var(--dark-lighter);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-item:hover {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(249, 115, 22, 0.1));
+            transform: translateX(5px);
+        }
+
+        .chapter-item span:first-child {
+            color: var(--secondary);
+        }
+
+        .book-cta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .book-cta .note {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark-light);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info > p {
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--dark);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(249, 115, 22, 0.05));
+        }
+
+        .contact-item .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-item-text h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-item-text p {
+            color: var(--gray);
+        }
+
+        .contact-form-container {
+            background: var(--dark);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-form-container h3 {
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: var(--dark-lighter);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select option {
+            background: var(--dark);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 10px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--dark-lighter);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-image-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .about-content,
+            .defense-content,
+            .trainer-content,
+            .book-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .trainer-content {
+                text-align: center;
+            }
+
+            .trainer-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .trainer-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trainer-features {
+                justify-content: center;
+            }
+
+            .book-content {
+                text-align: center;
+            }
+
+            .book-cta {
+                justify-content: center;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-text .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .training-components,
+            .defense-skills,
+            .chapters-grid,
+            .trainer-features {
+                grid-template-columns: 1fr;
+            }
+
+            .trainer-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .book-3d {
+                width: 250px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .stat-item {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .contact-form-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo gradient-text">H. Serkan Emek</a>
+            <ul class="nav-links">
+                <li><a href="#anasayfa">Ana Sayfa</a></li>
+                <li><a href="#hakkinda">Eğitim</a></li>
+                <li><a href="#neden">Neden Özel Ders?</a></li>
+                <li><a href="#antrenor">Antrenör</a></li>
+                <li><a href="#kitap">Kitap</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#anasayfa">Ana Sayfa</a>
+            <a href="#hakkinda">Eğitim</a>
+            <a href="#neden">Neden Özel Ders?</a>
+            <a href="#antrenor">Antrenör</a>
+            <a href="#kitap">Kitap</a>
+            <a href="#iletisim">İletişim</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="anasayfa">
+        <div class="hero-bg">
+            <div class="floating-glove">🥊</div>
+            <div class="floating-glove">🥊</div>
+            <div class="floating-glove">🥊</div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ankara <span class="gradient-text">Özel Boks Dersleri</span></h1>
+                    <p class="tagline">Gücünü Kontrol Altına Al, Tekniğini İnşa Et</p>
+                    <p>Boks yalnızca yumruk atmak değildir; denge, zamanlama, refleks ve zihinsel kontrolün bir bütünüdür. Tamamen kişinin fiziksel yapısına, hedeflerine ve mevcut seviyesine göre planlanan özel eğitim sistemi.</p>
+                    <div class="hero-buttons">
+                        <a href="#iletisim" class="btn btn-primary">
+                            <span>🥊</span> Hemen Başla
+                        </a>
+                        <a href="#hakkinda" class="btn btn-secondary">
+                            Daha Fazla Bilgi
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                      
+                        <div class="hero-ring"></div>
+                        <div class="hero-ring"></div>
+                        <div class="hero-ring"></div>
+                       
+                     <img src="yazar.png" alt="Boks" style="width:80%; height:80%; object-fit:cover; border-radius:50%; position:absolute; top:10%; left:10%; z-index:5;"> 
+                        <div class="hero-glove-icon">🥊</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="hakkinda">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Özel Boks Dersleri <span class="gradient-text">Nasıl İşlenir?</span></h2>
+                <p>Her sporcu için standart bir program uygulanmaz. Dersler, bire bir formatta ve kişiye özel kriterler dikkate alınarak hazırlanır.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>Kişiye Özel <span class="gradient-text">Antrenman Programı</span></h3>
+                    <p>Antrenman süreci; temel duruş, ayak çalışmaları, yumruk teknikleri, savunma refleksleri ve kondisyon bileşenlerini kapsar. Gelişim süreci düzenli olarak takip edilir ve program buna göre güncellenir.</p>
+                    <div class="training-components">
+                        <div class="training-item">
+                            <span>🎯</span>
+                            <span>Temel Duruş</span>
+                        </div>
+                        <div class="training-item">
+                            <span>👣</span>
+                            <span>Ayak Çalışmaları</span>
+                        </div>
+                        <div class="training-item">
+                            <span>👊</span>
+                            <span>Yumruk Teknikleri</span>
+                        </div>
+                        <div class="training-item">
+                            <span>🛡️</span>
+                            <span>Savunma Refleksleri</span>
+                        </div>
+                        <div class="training-item">
+                            <span>💪</span>
+                            <span>Kondisyon</span>
+                        </div>
+                        <div class="training-item">
+                            <span>🧠</span>
+                            <span>Zihinsel Kontrol</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-cards animate-on-scroll">
+                    <div class="about-card">
+                        <h4><span>📊</span> Fiziksel Kapasite</h4>
+                        <p>Yaş, kilo ve dayanıklılık seviyenize göre kişiselleştirilmiş program oluşturulur.</p>
+                    </div>
+                    <div class="about-card">
+                        <h4><span>🏃</span> Spor Geçmişi</h4>
+                        <p>Daha önce spor yapıp yapmadığınız değerlendirilerek başlangıç seviyesi belirlenir.</p>
+                    </div>
+                    <div class="about-card">
+                        <h4><span>🎯</span> Hedef Belirleme</h4>
+                        <p>Kondisyon, savunma, teknik gelişim veya müsabaka altyapısı - amacınıza göre özelleştirilir.</p>
+                    </div>
+                    <div class="about-card">
+                        <h4><span>⏰</span> Zaman ve Disiplin</h4>
+                        <p>Çalışma programınız ve disiplininiz göz önünde bulundurularak ders planı hazırlanır.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why" id="neden">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Neden <span class="gradient-text">Özel Ders?</span></h2>
+                <p>Grup antrenmanlarının aksine özel derslerde birçok avantaj sağlanır.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll">
+                    <div class="icon">🔍</div>
+                    <h4>Anlık Hata Tespiti</h4>
+                    <p>Hatalar anında tespit edilir ve düzeltilir. Yanlış teknikler yerleşmeden müdahale edilir.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="icon">⚡</div>
+                    <h4>Özel Tempo</h4>
+                    <p>Sporcuya özel tempo ve yükleme uygulanır. Kendinize uygun hızda ilerleme sağlarsınız.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="icon">🛡️</div>
+                    <h4>Minimum Sakatlık Riski</h4>
+                    <p>Sakatlık riski minimize edilir. Doğru teknik ve kontrollü antrenmanla güvende kalırsınız.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="icon">🚀</div>
+                    <h4>Hızlı Gelişim</h4>
+                    <p>Teknik gelişim çok daha kısa sürede sağlanır. Birebir ilgi ile maksimum verim alırsınız.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Defense Section -->
+    <section class="defense" id="savunma">
+        <div class="container">
+            <div class="defense-content">
+                <div class="defense-text animate-on-scroll">
+                    <h3>Sokak Gerçekliği ve <span class="gradient-text">Savunma Bilinci</span></h3>
+                    <p>Boks eğitimi yalnızca ring odaklı değildir. Gerçek hayatta karşılaşılabilecek risklere karşı bedensel farkındalık, mesafe kontrolü ve soğukkanlılık kazandırmak da sürecin bir parçasıdır.</p>
+                    <p>Bu yaklaşım, sporun yalnızca fiziksel değil aynı zamanda zihinsel bir disiplin olduğunu temel alır.</p>
+                    <div class="defense-skills">
+                        <div class="skill-card">
+                            <div class="icon">👁️</div>
+                            <h4>Bedensel Farkındalık</h4>
+                        </div>
+                        <div class="skill-card">
+                            <div class="icon">📏</div>
+                            <h4>Mesafe Kontrolü</h4>
+                        </div>
+                        <div class="skill-card">
+                            <div class="icon">🧊</div>
+                            <h4>Soğukkanlılık</h4>
+                        </div>
+                        <div class="skill-card">
+                            <div class="icon">⚡</div>
+                            <h4>Hızlı Refleks</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="defense-quote animate-on-scroll">
+                    <div class="quote-icon">❝</div>
+                    <p>Boks, yalnızca fiziksel bir spor değil, aynı zamanda zihinsel bir disiplindir. Gerçek güç, kontrolü elde tutabilmektir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainer Section -->
+    <section class="trainer" id="antrenor">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2><span class="gradient-text">H. Serkan Emek</span> Hakkında</h2>
+            </div>
+            <div class="trainer-content">
+                <div class="trainer-image animate-on-scroll">
+                    
+                    <div class="trainer-photo">
+                       
+                        <img src="yazar2.jpg" alt="H. Serkan Emek" style="width:100%; height:100%; object-fit:cover; border-radius:20px; position:absolute; top:0; left:0;">
+                       
+                        <div class="trainer-photo-icon" style="display:none;">🥊</div>
+                        <div class="trainer-photo-text" style="display:none;">H. Serkan Emek</div>
+                    </div>
+                    <div class="trainer-badge">Profesyonel Boks Antrenörü</div>
+                </div>
+                <div class="trainer-info animate-on-scroll">
+                    <h3>Profesyonel <span class="gradient-text">Boks Antrenörü</span></h3>
+                    <p class="title">Ankara – Özel Boks Dersleri</p>
+                    <p>H. Serkan Emek, Türkiye'de boks eğitimi alanında uzun yıllara dayanan saha tecrübesine sahip bir antrenördür. Altı farklı şehirde görev almış, çok sayıda sporcu ve antrenör yetiştirmiştir.</p>
+                    <p>Mesleki disiplin, saha tecrübesi ve sistemli antrenman anlayışıyla derslerinde yüksek verim hedefler. Eğitim yaklaşımı, rastgele çalışmalar yerine ölçülebilir ve öğretilebilir bir boks sistemine dayanır.</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="20">0</div>
+                            <div class="stat-label">Yıllık Tecrübe</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="6">0</div>
+                            <div class="stat-label">Şehirde Görev</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Yetiştirilen Sporcu</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="1">0</div>
+                            <div class="stat-label">Yayınlanan Kitap</div>
+                        </div>
+                    </div>
+
+                    <div class="trainer-features">
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <span>Mesleki Disiplin</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <span>Saha Tecrübesi</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <span>Sistemli Antrenman</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <span>Ölçülebilir Gelişim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Section -->
+    <section class="book" id="kitap">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Yazdığı Kitap: <span class="gradient-text">Sıfırdan Ringe</span></h2>
+            </div>
+            <div class="book-content">
+                <div class="book-visual animate-on-scroll">
+                    <div class="book-3d">
+                        <div class="book-cover">
+                            <div class="book-pages"></div>
+                           
+                            <div class="book-cover-content">
+                               
+                                <img src="kitap.jpg" alt="Sıfırdan Ringe - Sistemli Boks" style="width:100%; height:100%; object-fit:cover; border-radius:5px 15px 15px 5px; position:absolute; top:0; left:0;">
+                              
+                                <div class="book-icon" style="display:none;">🥊</div>
+                                <h4 class="book-title" style="display:none;">SIFIRDAN RİNGE</h4>
+                                <p class="book-subtitle" style="display:none;">Sistemli Boks</p>
+                                <p class="book-author" style="display:none;">H. Serkan Emek</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-info animate-on-scroll">
+                    <h3>Sıfırdan Ringe – <span class="gradient-text">Sistemli Boks</span></h3>
+                    <p>Türkiye'de alanında öncü bir boks kitabı olan bu eser, H. Serkan Emek'in saha tecrübesine dayalı olarak hazırlanmıştır. Kitap; boksa sıfırdan başlayanlar, tekniğini sistemli biçimde geliştirmek isteyen sporcular ve antrenör adayları için referans niteliği taşır.</p>
+                    
+                    <div class="book-chapters">
+                        <h4><span>📖</span> Kitap İçeriğinden Başlıklar</h4>
+                        <div class="chapters-grid">
+                            <div class="chapter-item">
+                                <span>🎯</span>
+                                <span>Temel duruş ve ayak çalışmaları</span>
+                            </div>
+                            <div class="chapter-item">
+                                <span>👊</span>
+                                <span>Jab, cross, hook ve uppercut teknikleri</span>
+                            </div>
+                            <div class="chapter-item">
+                                <span>🛡️</span>
+                                <span>Savunma prensipleri ve refleks geliştirme</span>
+                            </div>
+                            <div class="chapter-item">
+                                <span>📈</span>
+                                <span>Sistemli antrenman mantığı</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-cta">
+                        <a href="https://www.hepsiburada.com/sifirdan-ringe-sistemli-boks-h-serkan-emek-pm-HBC00004C6HRD" class="btn btn-primary">
+                            <span>📚</span> Kitabı Satın Al
+                        </a>
+                        <span class="note">*Satış platformuna yönlendirileceksiniz</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="iletisim">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>İletişim ve <span class="gradient-text">Ders Bilgisi</span></h2>
+                <p>Ankara'da bire bir özel boks dersleri hakkında detaylı bilgi almak ve randevu oluşturmak için iletişime geçebilirsiniz.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Hemen <span class="gradient-text">İletişime Geçin</span></h3>
+                    <p>Özel boks dersleri için randevu almak veya sorularınızı iletmek için aşağıdaki kanallardan bize ulaşabilirsiniz.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="icon">📍</div>
+                            <div class="contact-item-text">
+                                <h4>Konum</h4>
+                                <p>Ankara, Türkiye</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">📧</div>
+                            <div class="contact-item-text">
+                                <h4>E-posta</h4>
+                                <p>info@serkanemek.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">📱</div>
+                            <div class="contact-item-text">
+                                <h4>Telefon</h4>
+                                <p>+90 (5XX) XXX XX XX</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">⏰</div>
+                            <div class="contact-item-text">
+                                <h4>Çalışma Saatleri</h4>
+                                <p>Pazartesi - Cumartesi: 09:00 - 21:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container animate-on-scroll">
+                    <h3>Ders İçin <span class="gradient-text">Başvuru Formu</span></h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ad Soyad</label>
+                            <input type="text" id="name" name="name" placeholder="Adınızı ve soyadınızı girin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Telefon numaranız" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" name="email" placeholder="E-posta adresiniz" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Deneyim Seviyesi</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Seçiniz</option>
+                                <option value="beginner">Başlangıç - Hiç deneyimim yok</option>
+                                <option value="intermediate">Orta - Biraz deneyimim var</option>
+                                <option value="advanced">İleri - Deneyimliyim</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" name="message" placeholder="Hedefiniz ve beklentilerinizi yazın..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>🥊</span> Başvuru Gönder
+                        </button>
+                    </form>
+                    <div class="success-message" id="successMessage">
+                        <p>✅ Başvurunuz başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo gradient-text">H. Serkan Emek</a>
+                    <p>Ankara'da profesyonel boks eğitimi. Gücünü kontrol altına al, tekniğini inşa et.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📸</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📺</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="#anasayfa">Ana Sayfa</a></li>
+                        <li><a href="#hakkinda">Eğitim Sistemi</a></li>
+                        <li><a href="#neden">Neden Özel Ders?</a></li>
+                        <li><a href="#antrenor">Antrenör</a></li>
+                        <li><a href="#kitap">Kitap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>İletişim</h4>
+                    <ul>
+                        <li><a href="#iletisim">Randevu Al</a></li>
+                        <li><a href="#">Ankara, Türkiye</a></li>
+                        <li><a href="mailto:info@serkanemek.com">info@serkanemek.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 H. Serkan Emek - Ankara Özel Boks Dersleri. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Animate on scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Counter animation
+        const counters = document.querySelectorAll('.stat-number');
+        let countersAnimated = false;
+
+        const animateCounters = () => {
+            if (countersAnimated) return;
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+
+                updateCounter();
+            });
+
+            countersAnimated = true;
+        };
+
+        // Trigger counter animation when trainer section is visible
+        const trainerSection = document.getElementById('antrenor');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        counterObserver.observe(trainerSection);
+
+        // Active navigation link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            submitBtn.textContent = 'Gönderiliyor...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                contactForm.reset();
+                successMessage.classList.add('show');
+                submitBtn.innerHTML = '<span>🥊</span> Başvuru Gönder';
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            }, 1500);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for floating gloves
+        document.addEventListener('mousemove', (e) => {
+            const gloves = document.querySelectorAll('.floating-glove');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            gloves.forEach((glove, index) => {
+                const speed = (index + 1) * 20;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                glove.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
